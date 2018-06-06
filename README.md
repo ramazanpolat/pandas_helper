@@ -777,7 +777,7 @@ def df_cols(self, *columns) -> pd.DataFrame:
 
 
 def df_row(self, ix) -> pd.Series:
-    return self.iloc[ix]
+    return self.iloc[ix].copy()
 
 
 def ser_col(self, column):
@@ -792,12 +792,18 @@ def ser_cols(self, *columns):
     return tuple(result)
 
 
+def ser_row(self, ix):
+    return self.values[ix]
+
+
 pd.DataFrame.col = df_col
 pd.DataFrame.cols = df_cols
 pd.DataFrame.row = df_row
 pd.DataFrame.rows = pd.DataFrame.iloc
 pd.Series.col = pd.Series.get
 pd.Series.cols = ser_cols
+pd.Series.row = ser_row
+pd.Series.rows = pd.Series.values
 ```
 
 ## Single Column Helper (col):
