@@ -1,16 +1,9 @@
 
-# **My Pandas DataFrame Cheat Sheet**
-
+# **My Pandas DataFrame Cheat Sheet and Helpers**
 * DataFrame is like a table, consisting rows and column.
 * DataFrame is a list of Series.
 * Series is a list of values.
 * Multiple series become a DataFrame.
-* DataFrames have an index.
-* Index is row number by default and starts with 0.
-* Index can be defined while DataFrame created with 'index' parameter. If not provided, row numbers are used as index by default.
-* Index is also a series if it consists only one column.
-* Multiple column indexes are also supported.
-
 
 ## **Creating a DataFrame**
 
