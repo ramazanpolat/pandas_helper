@@ -1,9 +1,16 @@
+
 # **My Pandas DataFrame Cheat Sheet**
 
 * DataFrame is like a table, consisting rows and column.
 * DataFrame is a list of Series.
 * Series is a list of values.
 * Multiple series become a DataFrame.
+* DataFrames have an index.
+* Index is row number by default and starts with 0.
+* Index can be defined while DataFrame created with 'index' parameter. If not provided, row numbers are used as index by default.
+* Index is also a series if it consists only one column.
+* Multiple column indexes are also supported.
+
 
 ## **Creating a DataFrame**
 
@@ -21,6 +28,7 @@ df
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -59,6 +67,7 @@ df
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -115,6 +124,7 @@ df
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -231,6 +241,7 @@ df[['A']]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -277,6 +288,7 @@ df[['A','B']]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -331,6 +343,7 @@ df[:]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -382,6 +395,7 @@ df[0:2]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -419,6 +433,7 @@ df[0:4:2]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -455,6 +470,7 @@ df[::2]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -496,6 +512,7 @@ df[2:]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -537,6 +554,7 @@ df[:3]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -578,6 +596,7 @@ df[::-1]
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -637,6 +656,7 @@ df
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -707,12 +727,69 @@ df2 = pd.DataFrame.from_dict(dv).set_index('i')
 df2
 ```
 
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>i</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>31</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>41</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>51</td>
+      <td>52</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 Here the `i` column become an index
 
 
 ```python
 df2.index
 ```
+
+
+
+
+    Int64Index([1, 2, 3, 4, 5], dtype='int64', name='i')
+
+
 
 As seen above, now the index is a list of integers (int64)
 
@@ -723,6 +800,13 @@ As seen above, now the index is a list of integers (int64)
 df2.index[3]
 ```
 
+
+
+
+    4
+
+
+
 ## Get the row where index is 3:
 
 
@@ -731,9 +815,68 @@ df2.loc[3]
 ```
 
 
+
+
+    A    31
+    B    32
+    Name: 3, dtype: int64
+
+
+
+
 ```python
 df2
 ```
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>i</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>31</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>41</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>51</td>
+      <td>52</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ## Get the n-th row:
 
@@ -744,10 +887,49 @@ df2.iloc[n]
 ```
 
 
+
+
+    A    41
+    B    42
+    Name: 4, dtype: int64
+
+
+
+
 ```python
 # or 
 df2[n:n+1]
 ```
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>i</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>41</td>
+      <td>42</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 The difference between **``df2.iloc[n]``** and **``df2[n:n+1]``** is, **``iloc``** always returns a **Series**, while the other returns a **DataFrame**.
 
@@ -815,6 +997,19 @@ df2.col(0) # Get first column as Series
 df2.col('A') # Get column 'A' as Series
 ```
 
+
+
+
+    i
+    1    11
+    2    21
+    3    31
+    4    41
+    5    51
+    Name: A, dtype: int64
+
+
+
 ## Multiple Columns Helper (cols):
 Returns **DataFrame**
 
@@ -824,6 +1019,56 @@ df2.cols(0,1) # Get column first and second as DataFrame
 df2.cols('A', 'B') # Get column 'A' and 'B' as DataFrame
 ```
 
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>i</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>31</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>41</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>51</td>
+      <td>52</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 ## Single Row Helper (row):
 Returns **Series**
 
@@ -832,6 +1077,15 @@ Returns **Series**
 df2.row(0) # Get first row as Series
 ```
 
+
+
+
+    A    11
+    B    12
+    Name: 1, dtype: int64
+
+
+
 ## Multiple Rows Helper (rows):
 Returns **DataFrame**
 
@@ -839,6 +1093,46 @@ Returns **DataFrame**
 ```python
 df2.rows[0:3] # Get rows from 0 to 3 (excluding 3) as DataFrame
 ```
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>i</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>31</td>
+      <td>32</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ## Mixing Row and Column Helpers:
 
@@ -850,6 +1144,13 @@ df2.row(0).col(0) # Get first column of first row as value
 df2.row(0).col('A') # Get column 'A' of first row as value
 ```
 
+
+
+
+    11
+
+
+
 ### Multiple column of single row -> tuple:
 
 
@@ -857,6 +1158,13 @@ df2.row(0).col('A') # Get column 'A' of first row as value
 df2.row(0).cols(0, 1) # Get first two columns of first row as tuple
 df2.row(0).cols('A', 'B') # Get 'A' and 'B' columns of first row as tuple
 ```
+
+
+
+
+    (11, 12)
+
+
 
 ### Single column of multiple rows -> Series
 
@@ -866,6 +1174,17 @@ df2.rows[0:3].col(0) # Get first column of rows from 0 to 3 (excluding 3) as Ser
 df2.rows[0:3].col('A') # Get column 'A' of rows from 0 to 3 (excluding 3) as Series
 ```
 
+
+
+
+    i
+    1    11
+    2    21
+    3    31
+    Name: A, dtype: int64
+
+
+
 ### Multiple column of multiple rows -> DataFrame
 
 
@@ -873,6 +1192,46 @@ df2.rows[0:3].col('A') # Get column 'A' of rows from 0 to 3 (excluding 3) as Ser
 df2.rows[0:3].cols(0, 1) # Get first two column of rows from 0 to 3 (excluding 3) as DataFrame
 df2.rows[0:3].cols('A', 'B') # Get 'A' and 'B' columns of rows from 0 to 3 (excluding 3) as DataFrame
 ```
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>i</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>31</td>
+      <td>32</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ### Single row of single column -> raw value:
 
@@ -882,6 +1241,13 @@ df2.col(0).row(0) # Get first row of first column as value
 df2.col('A').row(0) # Get first row of column 'A' as value
 ```
 
+
+
+
+    11
+
+
+
 ### Multiple rows of single column -> numpy.ndarray:
 
 
@@ -889,6 +1255,13 @@ df2.col('A').row(0) # Get first row of column 'A' as value
 df2.col(0).rows[0:3] # Get rows from 0 to 3(excluding) of first column as numpy.ndarray
 df2.col('A').rows[0:3] # Get rows from 0 to 3(excluding) of column 'A' as numpy.ndarray
 ```
+
+
+
+
+    array([11, 21, 31])
+
+
 
 ### Single row of multiple columns -> Series:
 
@@ -898,6 +1271,15 @@ df2.cols(0, 1).row(0) # Get first row of first two columns as Series
 df2.cols('A', 'B').row(0) # Get first row of columns 'A' and 'B' as Series
 ```
 
+
+
+
+    A    11
+    B    12
+    Name: 1, dtype: int64
+
+
+
 ### Multiple rows of multiple columns -> DataFrame:
 
 
@@ -905,3 +1287,38 @@ df2.cols('A', 'B').row(0) # Get first row of columns 'A' and 'B' as Series
 df.cols(0, 1).rows[0:3] # Get rows from 0 to 3(excluding) of first two columns as DataFrame
 df.cols('A', 'B').rows[0:3] # Get rows from 0 to 3(excluding) of of columns 'A' and 'B' as DataFrame
 ```
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>21</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>31</td>
+      <td>32</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
